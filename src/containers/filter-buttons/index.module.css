@@ -1,0 +1,6 @@
+.btnCont{
+    max-width: 600px;
+    margin: 10px auto;
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
