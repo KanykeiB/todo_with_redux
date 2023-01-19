@@ -3,7 +3,7 @@
 //     }
 // }
 
-import { getPostFailureActionCreator, getPostReceiveActionCreator, getPostRequestActionCreator, getPostsFailureActionCreator, getPostsReceiveActionCreator, getPostsRequestActionCreator } from "./actions"
+import { createPostFailureActionCreator, createPostReceiveActionCreator, createPostRequestActionCreator, deletePostFailureActionCreator, deletePostReceiveActionCreator, deletePostRequestActionCreator, getPostFailureActionCreator, getPostReceiveActionCreator, getPostRequestActionCreator, getPostsFailureActionCreator, getPostsReceiveActionCreator, getPostsRequestActionCreator, updatePostFailureActionCreator, updatePostReceiveActionCreator, updatePostRequestActionCreator } from "./actions"
 
 
 const fetchPosts =() => async (dispatch) =>{
@@ -31,5 +31,67 @@ const fetchPostById =(id) => async (dispatch) =>{
         dispatch(getPostFailureActionCreator(e))
     }
 }
+const updateRequest = {
+    method: 'PUT',
+    body: JSON.stringify({
+    title: 'foo2',
+    body: 'bar2',
+    userId: 1,
+}), 
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    }}
 
-export default {fetchPosts, fetchPostById}
+const updatePostById =(id) => async (dispatch) =>{
+    dispatch(updatePostRequestActionCreator())
+    try{
+        const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, updateRequest)
+        const parseData = await res.json()
+        setTimeout(()=>{
+            dispatch(updatePostReceiveActionCreator(parseData))
+        }, 2000)
+    } catch (e){
+        dispatch(updatePostFailureActionCreator(e))
+    }
+}
+
+const createRequest = {
+    method: 'POST',
+    body: JSON.stringify({
+    id: 1,
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+}), 
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    }}
+const createPosts =() => async (dispatch) =>{
+    dispatch(createPostRequestActionCreator())
+    try{
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts', createRequest)
+        const parseData = await res.json()
+        setTimeout(() => {
+            dispatch(createPostReceiveActionCreator(parseData))
+        }, 2000)
+    } catch (e){
+        dispatch(createPostFailureActionCreator(e))
+    }
+}
+
+const deletePostById =(id) => async (dispatch) =>{
+    dispatch(deletePostRequestActionCreator())
+    try{
+        const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            method:'DELETE',
+        })
+        const parseData = await res.json()
+        setTimeout(()=>{
+            dispatch(deletePostReceiveActionCreator(parseData))
+        }, 2000)
+    } catch (e){
+        dispatch(deletePostFailureActionCreator(e))
+    }
+}
+
+export default {fetchPosts, fetchPostById, updatePostById, createPosts, deletePostById }
