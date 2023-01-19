@@ -58,7 +58,6 @@ const updatePostById =(id) => async (dispatch) =>{
 const createRequest = {
     method: 'POST',
     body: JSON.stringify({
-    id: 1,
     title: 'foo',
     body: 'bar',
     userId: 1,
@@ -66,7 +65,7 @@ const createRequest = {
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
     }}
-const createPosts =() => async (dispatch) =>{
+const createPost =() => async (dispatch) =>{
     dispatch(createPostRequestActionCreator())
     try{
         const res = await fetch('https://jsonplaceholder.typicode.com/posts', createRequest)
@@ -94,4 +93,4 @@ const deletePostById =(id) => async (dispatch) =>{
     }
 }
 
-export default {fetchPosts, fetchPostById, updatePostById, createPosts, deletePostById }
+export default {fetchPosts, fetchPostById, updatePostById, createPost, deletePostById }

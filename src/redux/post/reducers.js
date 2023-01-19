@@ -52,7 +52,7 @@ const postsReducer =(state=initialState, action )=>{
         case CREATE_POST.RECEIVE:
             return{
                 ...state, 
-                list: action.payload,
+                data: action.payload,
                 loading:false
             }
         case CREATE_POST.FAILURE:
