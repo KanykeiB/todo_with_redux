@@ -17,18 +17,23 @@ input {
     font-size: 14px;
   }
 
-  .buttonG{
-    background: url('../../components/pictures/Google_logo.png') 50px center no-repeat;
-    width: 400px;
-  }
-  .passwordWrap{
-    position:relative
-  }
+.buttonG{
+  background: url('../../components/pictures/Google_logo.png') 50px center no-repeat;
+  width: 400px;
+  margin-bottom: 30px !important;
+  padding: 15px !important;
+}
+.passwordWrap{
+  position:relative
+}
 .eyeButton{
   position:absolute;
   left: 350px;
   top: 45px;
 }
-  /* span{
-    color: red
-  } */
+.submitButton{
+  width:400px;
+  margin-top: 10px !important;
+  padding: 15px 15px !important
+}
+

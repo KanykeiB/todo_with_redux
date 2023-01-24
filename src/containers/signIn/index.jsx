@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {useForm} from "react-hook-form";
 import * as yup from 'yup';
@@ -18,6 +18,10 @@ const schema = yup.object({
   .oneOf([yup.ref('password')], 'Passwords does not match'),}).required();
 
 const SignIn = () => {
+    const [visibility, setVisibility] = useState(false)
+    const handleVisibility = () => {
+      setVisibility(visibility ? false : true)
+    }
     const { 
       register, 
       handleSubmit, 
@@ -33,7 +37,6 @@ const SignIn = () => {
           <h2>Log in to your Account</h2>
           <h4>Welcome back, please enter your details.</h4>
           <Button 
-            sx={{marginBottom: 3}}
             variant="outlined"
             className={styles.buttonG}
             >Continue with Google</Button>
@@ -46,27 +49,26 @@ const SignIn = () => {
                 />
                 {errors.email && <p style={{color:"red"}}>{errors.email.message}</p>}
               </div>
-              <div style={{ marginBottom: 15 }}
-              className={styles.passwordWrap}>
+              <div className={styles.passwordWrap}>
                 <p>Password</p>
                 <input
                   name="password"
-                  type="password"
+                  type={visibility? "text" : "password"}
                   className={styles.passwordInput}
                   {...register('password')}
                 />
                 <RemoveRedEyeOutlinedIcon
-                color="action"
-                className={styles.eyeButton}
-                />
+                  color="action"
+                  className={styles.eyeButton}
+                  onClick={handleVisibility}
+                  />
                 {errors.password && <p style={{color:"red"}}>{errors.password.message}</p>}
-                {/* <div>{errors.password?.message}</div> */}
               </div>  
               <div className={styles.additionalBlock}><Checkbox/> <p>Remember me</p> <p>Forgot Password?</p> </div>
               <Button
                 type="submit"
                 variant="contained"
-                sx={{width: 400, marginTop: 3, padding: "15px 15px"}}
+                className={styles.submitButton}
                 >
                   Log in
                 </Button>

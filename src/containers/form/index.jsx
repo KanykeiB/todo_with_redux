@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {useForm} from "react-hook-form";
 import * as yup from 'yup';
@@ -21,6 +21,14 @@ const schema = yup.object({
   .oneOf([yup.ref('password')], 'Passwords does not match'),}).required();
 
 const FormModule = () => {
+    const [visibility, setVisibility] = useState(false)
+    const handleVisibility = () => {
+      setVisibility(visibility ? false : true)
+    }
+    const [visibility2, setVisibility2] = useState(false)
+    const handleVisibility2 = () => {
+      setVisibility2(visibility2 ? false : true)
+    }
     const { 
       register, 
       handleSubmit, 
@@ -39,7 +47,6 @@ const FormModule = () => {
           sx={{marginBottom: 3}}
           variant="outlined"
           className={styles.buttonG}
-          // startIcon={<Avatar src={googleLogo} size="small"/>}
           >Sign up with Google</Button>
           <Divider>OR</Divider>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -60,27 +67,27 @@ const FormModule = () => {
             <div className={styles.passwordWrap}>
               <p>Password<span style={{color:"red"}}>*</span></p>
               <input
-                name="password"
-                type="password"
+                type={visibility? "text" : "password"}
                 {...register('password')}
               />
                 <RemoveRedEyeOutlinedIcon
                 className={styles.eyeButton}
                 color="action"
+                onClick={handleVisibility}
                 />
               {errors.password && <p style={{color:"red"}}>{errors.password.message}</p>}
             </div>
             <div className={styles.passwordWrap}>
               <p>Confirm Password<span style={{color:"red"}}>*</span></p>
               <input
-                // name="passwordConfirm"
-                type="password"
+                type={visibility2? "text" : "password"}
                 {...register('passwordConfirm')}
               />
 
                 <RemoveRedEyeOutlinedIcon
                 color="action"
                 className={styles.eyeButton}
+                onClick={handleVisibility2}
                 />
               {errors.passwordConfirm && <p style={{color:"red"}}>{errors.passwordConfirm.message}</p>}
             </div>
@@ -90,7 +97,7 @@ const FormModule = () => {
             <Button
             type="submit"
             variant="contained"
-            sx={{width: 400, marginTop: 3, padding: "15px 15px"}}
+            className={styles.submitButton}
             >
               Get Started
             </Button>

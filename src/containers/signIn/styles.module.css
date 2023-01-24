@@ -21,17 +21,17 @@ input {
   }
 
 
-  .buttonG{
-    background: url('../../components/pictures/Google_logo.png') 50px center no-repeat;
-    width: 400px;
-  }
-  /* span{
-    color: red
-  } */
-  .additionalBlock{
-    display: flex;
-    justify-content: space-around;
-  }
+.buttonG{
+  background: url('../../components/pictures/Google_logo.png') 50px center no-repeat;
+  width: 400px;
+  margin-bottom: 30px !important;
+  padding: 15px !important;
+}
+
+.additionalBlock{
+  display: flex;
+  justify-content: space-around;
+}
 .passwordWrap{
   position:relative
 }
@@ -39,4 +39,9 @@ input {
   position:absolute;
   left: 350px;
   top: 45px;
+}
+.submitButton{
+  width:400px;
+  margin-top: 10px !important;
+  padding: 15px 15px !important
 }
