@@ -70,9 +70,7 @@ const createPost =() => async (dispatch) =>{
     try{
         const res = await fetch('https://jsonplaceholder.typicode.com/posts', createRequest)
         const parseData = await res.json()
-        setTimeout(() => {
-            dispatch(createPostReceiveActionCreator(parseData))
-        }, 2000)
+
     } catch (e){
         dispatch(createPostFailureActionCreator(e))
     }

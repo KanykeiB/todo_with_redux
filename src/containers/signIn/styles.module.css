@@ -1,0 +1,42 @@
+.container{
+    border: 1px solid #fadded;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px 30px;
+    background-color: white;
+    border-radius: 50px;
+}
+p{
+    text-align: left;
+}
+input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #808080;
+    padding: 15px 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+
+  .buttonG{
+    background: url('../../components/pictures/Google_logo.png') 50px center no-repeat;
+    width: 400px;
+  }
+  /* span{
+    color: red
+  } */
+  .additionalBlock{
+    display: flex;
+    justify-content: space-around;
+  }
+.passwordWrap{
+  position:relative
+}
+.eyeButton{
+  position:absolute;
+  left: 350px;
+  top: 45px;
+}
