@@ -45,3 +45,11 @@ input {
   margin-top: 10px !important;
   padding: 15px 15px !important
 }
+.displayNone{
+  opacity: 0%;
+}
+.closedEyeButton{
+  position:absolute;
+  left: 350px;
+  top: 45px;
+}

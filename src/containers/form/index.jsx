@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../components/pictures/Logo1.png';
 import IconButton from '@mui/material/IconButton';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import { Avatar } from '@mui/material';
 import googleLogo from '../../components/pictures/Google_logo.png'
 
@@ -71,10 +72,15 @@ const FormModule = () => {
                 {...register('password')}
               />
                 <RemoveRedEyeOutlinedIcon
-                className={styles.eyeButton}
-                color="action"
-                onClick={handleVisibility}
-                />
+                  className={visibility? styles.displayNone : styles.eyeButton }
+                  color="action"
+                  onClick={handleVisibility}
+                  />
+                <VisibilityOffOutlinedIcon
+                    className={visibility ? styles.closedEyeButton : styles.displayNone}
+                    color="action"
+                    onClick={handleVisibility}
+                    />
               {errors.password && <p style={{color:"red"}}>{errors.password.message}</p>}
             </div>
             <div className={styles.passwordWrap}>
@@ -85,20 +91,24 @@ const FormModule = () => {
               />
 
                 <RemoveRedEyeOutlinedIcon
-                color="action"
-                className={styles.eyeButton}
-                onClick={handleVisibility2}
-                />
+                  color="action"
+                  className={visibility2 ? styles.displayNone : styles.eyeButton}
+                  onClick={handleVisibility2}
+                  />
+                <VisibilityOffOutlinedIcon
+                  className={visibility2 ? styles.closedEyeButton : styles.displayNone}
+                  color="action"
+                  onClick={handleVisibility2}
+                  />
               {errors.passwordConfirm && <p style={{color:"red"}}>{errors.passwordConfirm.message}</p>}
             </div>
             <Checkbox/> <label>I have read and agree to the <a href='https://policies.google.com/terms?hl=en-US'>Terms of Service</a></label>
       
-            {/* <input type="submit"/> */}
             <Button
-            type="submit"
-            variant="contained"
-            className={styles.submitButton}
-            >
+              type="submit"
+              variant="contained"
+              className={styles.submitButton}
+              >
               Get Started
             </Button>
           </form>

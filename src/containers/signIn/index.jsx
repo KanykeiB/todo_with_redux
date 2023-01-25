@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 
 const schema = yup.object({
   fullName: yup.string().required('This field is required'),
@@ -59,9 +60,14 @@ const SignIn = () => {
                 />
                 <RemoveRedEyeOutlinedIcon
                   color="action"
-                  className={styles.eyeButton}
+                  className={visibility? styles.displayNone : styles.eyeButton}
                   onClick={handleVisibility}
                   />
+                  <VisibilityOffOutlinedIcon
+                    className={visibility ? styles.closedEyeButton : styles.displayNone}
+                    color="action"
+                    onClick={handleVisibility}
+                    />
                 {errors.password && <p style={{color:"red"}}>{errors.password.message}</p>}
               </div>  
               <div className={styles.additionalBlock}><Checkbox/> <p>Remember me</p> <p>Forgot Password?</p> </div>
